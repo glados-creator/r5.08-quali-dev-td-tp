@@ -102,7 +102,8 @@ graph TD
         "dockerfile": "Dockerfile", // [!code ++]
         "context": "." // [!code ++]
     }, // [!code ++]
-    "workspaceFolder": "/workspace"
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder}/sub-folder,target=/workspace,type=bind,consistency=cached"
 }
 ```
 3. Ajouter un fichier `.devcontainer/Dockerfile` :
@@ -288,7 +289,9 @@ Dans le cadre des développements, il peut être nécessaire d'ajouter des conte
     }, // [!code --]
     "dockerComposeFile": "docker-compose.yml", // [!code ++]
     "service": "devcontainer", // [!code ++]
-    "workspaceFolder": "/workspace"
+    "workspaceFolder": "/workspace",
+    // On a remplacé le workspaceMount par un simple bind mount dans le docker-compose
+    "workspaceMount": "source=${localWorkspaceFolder}/sub-folder,target=/workspace,type=bind,consistency=cached" // [!code --]
 }
 ```
 :::tip
