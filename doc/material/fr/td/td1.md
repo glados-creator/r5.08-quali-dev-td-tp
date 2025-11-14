@@ -103,7 +103,7 @@ graph TD
         "context": "." // [!code ++]
     }, // [!code ++]
     "workspaceFolder": "/workspace",
-    "workspaceMount": "source=${localWorkspaceFolder}/sub-folder,target=/workspace,type=bind,consistency=cached"
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
 }
 ```
 3. Ajouter un fichier `.devcontainer/Dockerfile` :
@@ -304,7 +304,7 @@ Dans le cadre des développements, il peut être nécessaire d'ajouter des conte
     "service": "devcontainer", // [!code ++]
     "workspaceFolder": "/workspace",
     // On a remplacé le workspaceMount par un simple bind mount dans le docker-compose
-    "workspaceMount": "source=${localWorkspaceFolder}/sub-folder,target=/workspace,type=bind,consistency=cached" // [!code --]
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached" // [!code --]
 }
 ```
 :::tip
@@ -574,7 +574,7 @@ Le fichier `package.json` est un fichier de configuration essentiel pour les pro
 
 - Chaque fichier `package.json` doit contenir au minimum les champs `name` et `version`.
 - Chaque fichier peut comporter une section `scripts` définissant des commandes personnalisées pouvant être exécutées via PNPM.
-- Le fichier peut contenir 
+- Le fichier peut contenir
 - Les packages sont installés dans le répertoire `node_modules`, qui est créé à la racine du projet. Ce répertoire contient toutes les dépendances nécessaires au projet, organisées de manière hiérarchique.
 
 ### Les plus de PNPM
