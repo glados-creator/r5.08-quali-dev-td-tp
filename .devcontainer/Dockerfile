@@ -13,7 +13,7 @@ RUN sh ./get-docker.sh
 RUN curl -s "https://get.sdkman.io" -o getsdkman.sh
 RUN bash ./getsdkman.sh
 
-ENV SDKMAN_JDK_VERSION=25-tem
+ENV SDKMAN_JDK_VERSION=21-tem
 ENV SDKMAN_GRADLE_VERSION=
 ENV SDKMAN_QUARKUS_VERSION=
 ENV NODE_MAJOR_VERSION=24
@@ -43,3 +43,4 @@ RUN bash -c "source $HOME/.bashrc && corepack enable pnpm && corepack use pnpm@1
 # Install requirements for contextmapper
 
 workdir /workspace
+CMD 
