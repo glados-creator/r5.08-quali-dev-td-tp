@@ -9,7 +9,7 @@ ENV NODE_OPTIONS='--max-old-space-size=200'
 ENV GRADLE_OPTS="-Xmx512m"
 
 RUN apt update
-RUN apt install -y git curl wget unzip zip libxtst6 graphviz libxi6 nodejs gcc zlib1g-dev libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 xauth xvfb
+RUN apt install -y git curl wget unzip zip libxtst6 graphviz libxi6 nodejs gcc zlib1g-dev libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 xauth xvfb chromium
 
 workdir /install
 ## Install Docker CE Cli
@@ -38,4 +38,5 @@ RUN bash -c "source $HOME/.bashrc && nvm install 24 && nvm use 24 && nvm alias d
 RUN bash -c "source $HOME/.bashrc && corepack enable pnpm && corepack use pnpm@10"
 
 workdir /workspace
+RUN pnpm install
 CMD 
