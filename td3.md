@@ -8,7 +8,7 @@
 - Quand utiliser des tests E2E ?
     - *À quel(s) besoin(s) répond ce type de test ?* vérifier que il y ai pas eu de régréssion / bug sur un chemin critique
     - *Quel est sa place dans le cycle de vie et de développement ?* fait partie de CI , lors de chaque branch merge
-    - *Avec quelle autre technique du web cette méthode de test partage-t-elle des similitudes ?* smoke test
+    - *Avec quelle autre technique du web cette méthode de test partage-t-elle des similitudes ?* .......
 - Comment concevoir des tests E2E ?
     - *Sur quoi portent exclusivement les tests E2E ?* 
     - *Peut-on utiliser des jeux de données dynamiques ?* non
