@@ -16,6 +16,7 @@ catalog:
   '@braintree/sanitize-url': ~7.1.1
   '@tailwindcss/postcss': ^4.1.14
   '@types/jasmine': ^5.1.0
+  cypress: ^15.7.0
   cytoscape: ~3.33.1
   cytoscape-cose-bilkent: ~4.1.0
   dayjs: ~1.11.18
