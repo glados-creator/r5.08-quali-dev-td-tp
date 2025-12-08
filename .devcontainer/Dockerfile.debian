@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM debian:trixie-slim
 
 ENV SDKMAN_JDK_VERSION=21-tem
 ENV SDKMAN_GRADLE_VERSION=8.14.3
@@ -10,33 +10,37 @@ ENV GRADLE_OPTS="-Xmx512m"
 
 workdir /install
 
-RUN pacman -Syyu --noconfirm 
-RUN pacman -S --noconfirm git  
-RUN pacman -S --noconfirm curl 
-RUN pacman -S --noconfirm wget 
-RUN pacman -S --noconfirm unzip 
-RUN pacman -S --noconfirm zip 
-# RUN pacman -S --noconfirm lib32-libxt  # libxtst6 
-# RUN pacman -S --noconfirm libxi6 
-# RUN pacman -S --noconfirm zlib1g-dev 
-# RUN pacman -S --noconfirm libgtk-3-0 
-# RUN pacman -S --noconfirm libgbm-dev 
-# RUN pacman -S --noconfirm libnotify-dev 
-# RUN pacman -S --noconfirm libnss3 
-# RUN pacman -S --noconfirm libxss1 
-# RUN pacman -S --noconfirm libasound2 
-# RUN pacman -S --noconfirm xauth 
-RUN pacman -S --noconfirm graphviz 
-# RUN pacman -S --noconfirm xvfb 
-# RUN pacman -S --noconfirm nodejs 
-RUN pacman -S --noconfirm gcc 
+RUN apt update
+RUN apt install -y git 
+RUN apt install -y curl
+RUN apt install -y wget
+RUN apt install -y unzip
+RUN apt install -y zip
+RUN apt install -y libxtst6
+RUN apt install -y libxi6
+RUN apt install -y zlib1g-dev
+RUN apt install -y libgtk-3-0
+RUN apt install -y libgbm-dev
+RUN apt install -y libnotify-dev
+RUN apt install -y libnss3
+RUN apt install -y libxss1
+RUN apt install -y libasound2
+RUN apt install -y xauth
+RUN apt install -y graphviz
+RUN apt install -y xvfb
+RUN apt install -y nodejs
+RUN apt install -y gcc
+RUN apt install -y chromium
 
-RUN pacman -S --noconfirm chromium
+## Install Docker CE Cli
+# Add Docker's official GPG key:
+RUN apt install -y ca-certificates
+RUN install -m 0755 -d /etc/apt/keyrings
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+RUN chmod a+r /etc/apt/keyrings/docker.asc
 
-# Install Docker CLI
-# DOESN T WORK DO dind
-# RUN curl -fsSL https://get.docker.com -o get-docker.sh
-# RUN sh ./get-docker.sh
+RUN curl -fsSL https://get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
 
 # Install SDKMAN
 RUN curl -s "https://get.sdkman.io" -o getsdkman.sh
@@ -61,4 +65,5 @@ RUN bash -c "source $HOME/.bashrc && corepack use pnpm@10"
 
 WORKDIR /qualdev-tdtp-ct
 RUN bash -c "source $HOME/.bashrc && pnpm install ."
+RUN bash -c "source $HOME/.bashrc && pnpm --filter apps-store-front-e2e exec cypress install"
 CMD 

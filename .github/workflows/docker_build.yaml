@@ -1,0 +1,21 @@
+name: Build Devcontainer Image
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.devcontainer/**'
+      - '.github/docker_build.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .devcontainer/
+          file: .devcontainer/Dockerfile

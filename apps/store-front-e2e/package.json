@@ -12,6 +12,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.18.2",
   "dependencies": {
+    "apps-store-front-e2e": "link:",
     "cypress": "catalog:"
   }
 }

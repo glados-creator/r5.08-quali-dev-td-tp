@@ -29,6 +29,7 @@
     "@angular/platform-browser": "catalog:",
     "@angular/router": "catalog:",
     "@tailwindcss/postcss": "catalog:",
+    "apps-store-front": "link:",
     "postcss": "catalog:",
     "rxjs": "catalog:",
     "tailwindcss": "catalog:",

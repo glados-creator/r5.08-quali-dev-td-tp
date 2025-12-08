@@ -8,7 +8,7 @@
     "vscode": {
       "extensions": [
         "esbenp.prettier-vscode",
-        // "vscjava.vscode-gradle",
+        "vscjava.vscode-gradle",
         "vscjava.vscode-java-debug",
         "jebbs.plantuml",
         "redhat.java",
