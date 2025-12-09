@@ -2,7 +2,7 @@
   "name": "org.openrichmedia.devcontainers/quali-dev-order-flow-dev:0824",
   "service": "dev",
   "dockerComposeFile": "docker-compose.yml",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/qualdev-tdtp-ct",
   "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
