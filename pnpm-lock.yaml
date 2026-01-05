@@ -106,6 +106,10 @@ catalogs:
 importers:
 
   .:
+    dependencies:
+      '@org.openrichmedia.priv.tfa.quali-dev/root':
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@angular/cli':
         specifier: 'catalog:'

@@ -2,6 +2,8 @@ GRADLE_OPTS="-Xmx512m" gradle :apps:product-registry-domain-service:quarkusDev
 GRADLE_OPTS="-Xmx512m" gradle :apps:product-registry-read-service:quarkusDev
 GRADLE_OPTS="-Xmx512m" gradle :apps:store-back:quarkusDev
 
+pnpm install . -w
+
 cd apps/store-front
 pnpm install .
 NODE_OPTIONS='--max-old-space-size=200' pnpm run --filter apps-store-front start
