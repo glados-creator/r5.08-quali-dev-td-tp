@@ -9,7 +9,7 @@ import org.ormi.priv.tfa.orderflow.kernel.product.ProductIdMapper;
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
 
 /**
- * TODO: Complete Javadoc
+ * abstract product JPA mapper
  */
 
 @Mapper(

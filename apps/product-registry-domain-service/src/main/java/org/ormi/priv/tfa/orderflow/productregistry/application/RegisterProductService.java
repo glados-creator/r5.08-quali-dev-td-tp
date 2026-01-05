@@ -16,9 +16,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * Handles product registration.
  */
-
 @ApplicationScoped
 public class RegisterProductService {
 
@@ -37,6 +36,13 @@ public class RegisterProductService {
         this.outbox = outbox;
     }
 
+    /**
+     * Creates a new product.
+     * 
+     * @param cmd register product command
+     * @return new product id
+     * @throws IllegalArgumentException if SKU exists
+     */
     @Transactional
     public ProductId handle(RegisterProductCommand cmd) throws IllegalArgumentException {
         if (repository.existsBySkuId(cmd.skuId())) {

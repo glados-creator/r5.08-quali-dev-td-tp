@@ -12,9 +12,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 /**
- * TODO: Complete Javadoc
+ * Product summary view for read operations
  */
-
 @Getter
 public class ProductSummary {
     
@@ -29,6 +28,13 @@ public class ProductSummary {
     @NotNull
     private final Integer catalogs;
 
+    /**
+     * @param id product identifier
+     * @param skuId SKU identifier
+     * @param name product name
+     * @param status lifecycle status
+     * @param catalogs number of catalogs
+     */
     private ProductSummary(
         ProductId id,
         SkuId skuId,
@@ -47,6 +53,9 @@ public class ProductSummary {
         return new ProductSummaryBuilder();
     }
 
+    /**
+     * Builder for ProductSummary
+     */
     public static final class ProductSummaryBuilder {
         private ProductId id;
         private SkuId skuId;
@@ -79,6 +88,11 @@ public class ProductSummary {
             return this;
         }
 
+        /**
+         * Builds ProductSummary with validation
+         * @return validated ProductSummary
+         * @throws ConstraintViolationException if validation fails
+         */
         public ProductSummary build() {
             ProductSummary summary = new ProductSummary(id, skuId, name, status, catalogs);
             final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

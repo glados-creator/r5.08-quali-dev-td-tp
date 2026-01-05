@@ -8,7 +8,7 @@ import org.ormi.priv.tfa.orderflow.contracts.productregistry.v1.write.RegisterPr
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
 
 /**
- * TODO: Complete Javadoc
+ * mapper for converting between RegisterProductCommand DTOs and idk commands
  */
 
 @Mapper(

@@ -15,7 +15,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * Handles product retirement.
  */
 @ApplicationScoped
 public class RetireProductService {
@@ -27,6 +27,12 @@ public class RetireProductService {
     @Inject
     OutboxRepository outbox;
 
+    /**
+     * Retires a product.
+     * 
+     * @param cmd retire product command
+     * @throws IllegalArgumentException if product not found
+     */
     @Transactional
     public void retire(RetireProductCommand cmd) throws IllegalArgumentException {
         Product product = repository.findById(cmd.productId())

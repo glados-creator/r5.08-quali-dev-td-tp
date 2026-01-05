@@ -17,9 +17,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * Handles product updates.
  */
-
 @ApplicationScoped
 public class UpdateProductService {
 
@@ -38,6 +37,12 @@ public class UpdateProductService {
         this.outbox = outbox;
     }
 
+    /**
+     * Updates product name.
+     * 
+     * @param cmd update name command
+     * @throws IllegalArgumentException if product not found
+     */
     @Transactional
     public void handle(UpdateProductNameCommand cmd) throws IllegalArgumentException {
         Product product = repository.findById(cmd.productId())
@@ -55,6 +60,12 @@ public class UpdateProductService {
         );
     }
 
+    /**
+     * Updates product description.
+     * 
+     * @param cmd update description command
+     * @throws IllegalArgumentException if product not found
+     */
     @Transactional
     public void handle(UpdateProductDescriptionCommand cmd) throws IllegalArgumentException {
         Product product = repository.findById(cmd.productId())

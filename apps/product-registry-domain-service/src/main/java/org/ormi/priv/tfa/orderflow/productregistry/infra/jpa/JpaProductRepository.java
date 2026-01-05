@@ -16,9 +16,9 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * JPA implementation of ProductRepository.
+ * Handles database operations for Product domain objects.
  */
-
 @ApplicationScoped
 public class JpaProductRepository implements PanacheRepositoryBase<ProductEntity, UUID>, ProductRepository {
 

@@ -16,9 +16,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 /**
- * TODO: Complete Javadoc
+ * Complete product view for detailed display
  */
-
 @Getter
 public class ProductView {
     
@@ -43,6 +42,18 @@ public class ProductView {
     @NotNull
     private final Instant updatedAt;
 
+    /**
+     * @param id product identifier
+     * @param version version number
+     * @param skuId SKU identifier
+     * @param name product name
+     * @param description product description
+     * @param status lifecycle status
+     * @param catalogs catalog references
+     * @param events product events
+     * @param createdAt creation timestamp
+     * @param updatedAt last update timestamp
+     */
     private ProductView(
         ProductId id,
         Long version,
@@ -71,6 +82,9 @@ public class ProductView {
         return new ProductViewBuilder();
     }
 
+    /**
+     * Builder for ProductView
+     */
     public static final class ProductViewBuilder {
         private ProductId id;
         private Long version;
@@ -133,6 +147,11 @@ public class ProductView {
             return this;
         }
 
+        /**
+         * Copies values from existing ProductView
+         * @param view source ProductView
+         * @return this builder
+         */
         public ProductViewBuilder with(ProductView view) {
             this.id = view.id;
             this.version = view.version;
@@ -147,6 +166,11 @@ public class ProductView {
             return this;
         }
 
+        /**
+         * Builds ProductView with validation
+         * @return validated ProductView
+         * @throws ConstraintViolationException if validation fails
+         */
         public ProductView build() throws ConstraintViolationException {
             ProductView view = new ProductView(id, version, skuId, name, description, status, catalogs, events, createdAt, updatedAt);
             final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -158,18 +182,28 @@ public class ProductView {
         }
     }
 
+    /**
+     * Reference to catalog containing the product
+     */
     public static class ProductViewCatalogRef {
         @NotNull
         private final ProductId id;
         @NotNull
         private final String name;
 
+        /**
+         * @param id catalog identifier
+         * @param name catalog name
+         */
         public ProductViewCatalogRef(ProductId id, String name) {
             this.id = id;
             this.name = name;
         }
     }
 
+    /**
+     * Product event in the view
+     */
     @Getter
     public static class ProductViewEvent {
         @NotNull
@@ -181,6 +215,12 @@ public class ProductView {
         @NotNull
         private final ProductEventV1Payload payload;
 
+        /**
+         * @param type event type
+         * @param timestamp when event occurred
+         * @param sequence event sequence number
+         * @param payload event data
+         */
         public ProductViewEvent(ProductEventType type, Instant timestamp, Long sequence, ProductEventV1Payload payload) {
             this.type = type;
             this.timestamp = timestamp;

@@ -5,12 +5,17 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 
 /**
- * TODO: Complete Javadoc
+ * Main entry point for the Product Registry service.
+ * Starts the Quarkus subsystems
  */
-
 @QuarkusMain
 public class Main {
 
+    /**
+     * Main starts app
+     * 
+     * @param args cli
+     */
     public static void main(String... args) {
         Quarkus.run(
             ProductRegistryDomainApplication.class,
@@ -18,8 +23,18 @@ public class Main {
             args);
     }
 
+    /**
+     * Quarkus app
+     */
     public static class ProductRegistryDomainApplication implements QuarkusApplication {
 
+        /**
+         * Runs the app
+         * 
+         * @param args cli
+         * @return exit code 0
+         * @throws Exception idk
+         */
         @Override
         public int run(String... args) throws Exception {
             Quarkus.waitForExit();

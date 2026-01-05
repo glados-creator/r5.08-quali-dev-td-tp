@@ -29,9 +29,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
 
 /**
- * TODO: Complete Javadoc
+ * REST API for product commands.
  */
-
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductRegistryCommandResource {
@@ -53,6 +52,13 @@ public class ProductRegistryCommandResource {
         this.updateProductService = updateProductService;
     }
 
+    /**
+     * Create a new product.
+     * 
+     * @param cmd product data
+     * @param uriInfo uri info
+     * @return 201 created
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public RestResponse<Void> registerProduct(RegisterProductCommandDto cmd, @Context UriInfo uriInfo) {
@@ -61,6 +67,12 @@ public class ProductRegistryCommandResource {
                 URI.create(uriInfo.getAbsolutePathBuilder().path("/products/" + productId.value()).build().toString()));
     }
 
+    /**
+     * Retire a product.
+     * 
+     * @param productId product id
+     * @return 200
+     */
     @DELETE
     @Path("/{id}")
     public RestResponse<Void> retireProduct(@PathParam("id") String productId) {
@@ -68,6 +80,13 @@ public class ProductRegistryCommandResource {
         return RestResponse.noContent();
     }
 
+    /**
+     * Update product name.
+     * 
+     * @param productId product id
+     * @param params new name
+     * @return 200
+     */
     @PATCH
     @Path("/{id}/name")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,6 +96,13 @@ public class ProductRegistryCommandResource {
         return RestResponse.noContent();
     }
 
+    /**
+     * Update product description.
+     * 
+     * @param productId product id
+     * @param params new description
+     * @return 200
+     */
     @PATCH
     @Path("/{id}/description")
     @Consumes(MediaType.APPLICATION_JSON)
