@@ -22,7 +22,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 /**
- * TODO: Complete Javadoc
+ * REST API for product queries.
  */
 
 @Path("/products")
@@ -46,6 +46,14 @@ public class ProductRegistryQueryResource {
         this.productIdMapper = productIdMapper;
     }
 
+    /**
+     * Search products with pagination.
+     * 
+     * @param sku String filter by SKU
+     * @param page int page number
+     * @param size int page size
+     * @return RestResponse<PaginatedProductListDto> paginated results
+     */
     @GET
     public RestResponse<PaginatedProductListDto> searchProducts(
             @QueryParam("sku") @DefaultValue("") String sku,
@@ -66,6 +74,12 @@ public class ProductRegistryQueryResource {
         return RestResponse.ok(list);
     }
 
+    /**
+     * Get product by id.
+     * 
+     * @param id String product id as UUID
+     * @return RestResponse<ProductViewDto> product details or 404
+     */
     @GET
     @Path("/{id}")
     public RestResponse<ProductViewDto> getProductById(@PathParam("id") String id) {

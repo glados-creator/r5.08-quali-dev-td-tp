@@ -18,7 +18,8 @@ import jakarta.resource.spi.IllegalStateException;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * Dispatches product events to appropriate projectors.
+ * Coordinates projection updates, persistence, and event broadcasting.
  */
 
 @ApplicationScoped
@@ -39,6 +40,17 @@ public class ProjectionDispatcher {
         this.productEventBroadcaster = productEventBroadcaster;
     }
 
+    /**
+     * Dispatches product event for projection.
+     * 1. Loads current view state
+     * 2. Projects event onto view
+     * 3. Saves updated view
+     * 4. Broadcasts event to subscribers
+     * 
+     * @param event ProductEventV1Envelope the event to project
+     * @return ProjectionResult<ProductView> result of projection operation
+     * @throws IllegalStateException if aggregate type doesn't match Product
+     */
     @Transactional
     public ProjectionResult<ProductView> dispatch(ProductEventV1Envelope<?> event) throws IllegalStateException {
         if (event.aggregateType().equals(PRODUCT_AGGREGATE_TYPE)) {

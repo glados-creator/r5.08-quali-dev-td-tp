@@ -22,9 +22,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * TODO: Complete Javadoc
+ * product view entity
  */
-
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -36,28 +35,68 @@ import lombok.Setter;
         @Index(name = "idx_prdview_sku", columnList = "sku_id")
     })
 public class ProductViewEntity {
+    
+    /**
+     * @param id UUID son id
+     */
     @Id
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "uuid")
     private UUID id;
+    
+    /**
+     * @param version Long la version
+     */
     @Column(name = "_version", nullable = false, columnDefinition = "bigint")
     private Long version;
+    
+    /**
+     * @param skuId String son id SKU
+     */
     @Column(name = "sku_id", nullable = false, length = 9, unique = true, columnDefinition = "varchar(9)")
     private String skuId;
+    
+    /**
+     * @param name String son nom
+     */
     @Column(name = "name", nullable = false, columnDefinition = "text")
     private String name;
+    
+    /**
+     * @param description String sa description
+     */
     @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
+    
+    /**
+     * @param status ProductLifecycle son état de cycle de vie
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, columnDefinition = "text")
     private ProductLifecycle status;
+    
+    /**
+     * @param events JsonNode les événements
+     */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "events", nullable = false, columnDefinition = "jsonb")
     private JsonNode events;
+    
+    /**
+     * @param catalogs JsonNode les catalogues
+     */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "catalogs", nullable = false, columnDefinition = "jsonb")
     private JsonNode catalogs;
+    
+    /**
+     * @param createdAt Instant la date de création
+     */
     @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "timestamptz")
     private Instant createdAt;
+    
+    /**
+     * @param updatedAt Instant la date de mise à jour
+     */
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamptz")
     private Instant updatedAt;
 }

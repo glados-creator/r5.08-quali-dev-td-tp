@@ -20,9 +20,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * TODO: Complete Javadoc
+ * MapStruct mapper for ProductView ↔ ProductViewEntity.
+ * Maps complex lists to DB columns.
  */
-
 @Mapper(
     componentModel = "cdi",
     unmappedTargetPolicy = ReportingPolicy.IGNORE,
