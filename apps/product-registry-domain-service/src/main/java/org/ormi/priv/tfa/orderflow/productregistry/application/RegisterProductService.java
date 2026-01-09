@@ -16,7 +16,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Handles product registration.
+ * Service for handling product registration commands
  */
 @ApplicationScoped
 public class RegisterProductService {
@@ -25,6 +25,13 @@ public class RegisterProductService {
     EventLogRepository eventLog;
     OutboxRepository outbox;
 
+    /**
+     * Constructor for RegisterProductService
+     * 
+     * @param repository ProductRepository le repository des produits
+     * @param eventLog EventLogRepository le repository des logs d'événements
+     * @param outbox OutboxRepository le repository de la boîte d'envoi
+     */
     @Inject
     public RegisterProductService(
         ProductRepository repository,
@@ -37,11 +44,11 @@ public class RegisterProductService {
     }
 
     /**
-     * Creates a new product.
+     * Handles the registration of a new product
      * 
-     * @param cmd register product command
-     * @return new product id
-     * @throws IllegalArgumentException if SKU exists
+     * @param cmd RegisterProductCommand la commande d'enregistrement de produit
+     * @return ProductId l'identifiant du produit créé
+     * @throws IllegalArgumentException si le SKU existe déjà
      */
     @Transactional
     public ProductId handle(RegisterProductCommand cmd) throws IllegalArgumentException {

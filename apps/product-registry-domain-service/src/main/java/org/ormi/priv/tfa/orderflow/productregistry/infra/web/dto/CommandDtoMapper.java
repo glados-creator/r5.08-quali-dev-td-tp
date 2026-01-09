@@ -8,9 +8,8 @@ import org.ormi.priv.tfa.orderflow.contracts.productregistry.v1.write.RegisterPr
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
 
 /**
- * mapper for converting between RegisterProductCommand DTOs and idk commands
+ * Mapper for converting between DTOs and command objects
  */
-
 @Mapper(
     componentModel = "cdi",
     builder = @Builder(disableBuilder = true),
@@ -18,6 +17,20 @@ import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
     unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public interface CommandDtoMapper {
+    
+    /**
+     * Converts a DTO to a command object
+     * 
+     * @param dto RegisterProductCommandDto le DTO de la commande d'enregistrement
+     * @return RegisterProductCommand la commande d'enregistrement
+     */
     public RegisterProductCommand toCommand(RegisterProductCommandDto dto);
+    
+    /**
+     * Converts a command object to a DTO
+     * 
+     * @param command RegisterProductCommand la commande d'enregistrement
+     * @return RegisterProductCommandDto le DTO de la commande d'enregistrement
+     */
     public RegisterProductCommandDto toDto(RegisterProductCommand command);
 }

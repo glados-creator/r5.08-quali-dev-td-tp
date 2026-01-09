@@ -9,7 +9,9 @@ import io.smallrye.mutiny.subscription.MultiEmitter;
 import jakarta.enterprise.context.ApplicationScoped;
 
 /**
- * TODO: Complete Javadoc
+ * Service for broadcasting product events to multiple subscribers.
+ * Maintains list of active emitters and broadcasts events to all subscribers.
+ * Uses thread-safe CopyOnWriteArrayList for concurrent access.
  */
 
 @ApplicationScoped
@@ -17,10 +19,21 @@ public class ProductEventBroadcaster {
 
     private final CopyOnWriteArrayList<MultiEmitter<? super ProductStreamElementDto>> emitters = new CopyOnWriteArrayList<>();
 
+    /**
+     * Broadcasts product event to all active subscribers.
+     * 
+     * @param element ProductStreamElementDto the event to broadcast
+     */
     public void broadcast(ProductStreamElementDto element) {
         emitters.forEach(emitter -> emitter.emit(element));
     }
 
+    /**
+     * Creates new event stream for subscribers.
+     * Adds emitter to list and removes on termination.
+     * 
+     * @return Multi<ProductStreamElementDto> the event stream
+     */
     public Multi<ProductStreamElementDto> stream() {
         return Multi.createFrom().emitter(emitter -> {
             emitters.add(emitter);
@@ -33,10 +46,12 @@ public class ProductEventBroadcaster {
     }
 
     // TODO: implement [Exercice 5]
+    // Create filtered stream for specific product id
     // public Multi<ProductStreamElementDto> streamByProductId(String productId) {
     // }
 
     // TODO: implement [Exercice 5]
+    // Create filtered stream for list of product ids
     // public Multi<ProductStreamElementDto> streamByProductIds(List<String> productIds) {
     // }
 }

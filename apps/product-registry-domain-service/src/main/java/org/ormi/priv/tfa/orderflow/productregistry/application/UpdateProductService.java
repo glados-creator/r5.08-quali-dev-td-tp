@@ -17,7 +17,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Handles product updates.
+ * Service responsible for handling product update operations.
+ * Handles commands to update product name and description with validation.
  */
 @ApplicationScoped
 public class UpdateProductService {
@@ -38,10 +39,16 @@ public class UpdateProductService {
     }
 
     /**
-     * Updates product name.
+     * Handles product name update command.
+     * 1. get product by id
+     * 2. update product name (with validation)
+     * 3. save product
+     * 4. log event
+     * 5. publish to outbox
      * 
-     * @param cmd update name command
+     * @param cmd UpdateProductNameCommand the command containing new name and product id
      * @throws IllegalArgumentException if product not found
+     * @throws IllegalStateException if product cannot be updated
      */
     @Transactional
     public void handle(UpdateProductNameCommand cmd) throws IllegalArgumentException {
@@ -61,10 +68,16 @@ public class UpdateProductService {
     }
 
     /**
-     * Updates product description.
+     * Handles product description update command.
+     * 1. get product by id
+     * 2. update product description (with validation)
+     * 3. save product
+     * 4. log event
+     * 5. publish to outbox
      * 
-     * @param cmd update description command
+     * @param cmd UpdateProductDescriptionCommand the command containing new description and product id
      * @throws IllegalArgumentException if product not found
+     * @throws IllegalStateException if product cannot be updated
      */
     @Transactional
     public void handle(UpdateProductDescriptionCommand cmd) throws IllegalArgumentException {

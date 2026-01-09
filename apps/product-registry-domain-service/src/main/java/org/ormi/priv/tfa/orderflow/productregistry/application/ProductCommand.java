@@ -4,26 +4,46 @@ import org.ormi.priv.tfa.orderflow.kernel.product.ProductId;
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuId;
 
 /**
- * Commands for managing products.
+ * Sealed interface representing product commands
  */
 public sealed interface ProductCommand {
     
-    /** Create a new product. */
+    /**
+     * Command to register a new product
+     * 
+     * @param name String le nom du produit
+     * @param description String la description du produit
+     * @param skuId SkuId l'identifiant SKU du produit
+     */
     public record RegisterProductCommand(
             String name,
             String description,
             SkuId skuId) implements ProductCommand {
     }
 
-    /** Discontinue a product. */
+    /**
+     * Command to retire an existing product
+     * 
+     * @param productId ProductId l'identifiant du produit à retirer
+     */
     public record RetireProductCommand(ProductId productId) implements ProductCommand {
     }
 
-    /** Change product name. */
+    /**
+     * Command to update a product's name
+     * 
+     * @param productId ProductId l'identifiant du produit à mettre à jour
+     * @param newName String le nouveau nom du produit
+     */
     public record UpdateProductNameCommand(ProductId productId, String newName) implements ProductCommand {
     }
 
-    /** Change product description. */
+    /**
+     * Command to update a product's description
+     * 
+     * @param productId ProductId l'identifiant du produit à mettre à jour
+     * @param newDescription String la nouvelle description du produit
+     */
     public record UpdateProductDescriptionCommand(ProductId productId, String newDescription) implements ProductCommand {
     }
 }

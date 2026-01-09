@@ -15,23 +15,32 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Handles product retirement.
+ * Service responsible for handling product retirement operations.
  */
 @ApplicationScoped
 public class RetireProductService {
 
     @Inject
     ProductRepository repository;
+    
     @Inject
     EventLogRepository eventLog;
+    
     @Inject
     OutboxRepository outbox;
 
     /**
-     * Retires a product.
+     * Executes the product retirement command.
+     * This method performs the following operations dans une transaction:
+     * 1. get the product gy cmd id from the repository
+     * 2. product.retire (with validation) 
+     * 3. save
+     * 4. Logs retirement event
+     * 5. Publishes dans la outbox 
      * 
-     * @param cmd retire product command
-     * @throws IllegalArgumentException if product not found
+     * @param cmd RetireProductCommand the command containing the product identifier to retire
+     * @throws IllegalArgumentException if the product with the specified ID is not found
+     * @throws IllegalStateException if the product cannot be retired due to business rules
      */
     @Transactional
     public void retire(RetireProductCommand cmd) throws IllegalArgumentException {

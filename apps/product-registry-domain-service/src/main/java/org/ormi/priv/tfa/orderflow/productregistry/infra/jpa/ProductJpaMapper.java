@@ -9,9 +9,8 @@ import org.ormi.priv.tfa.orderflow.kernel.product.ProductIdMapper;
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
 
 /**
- * abstract product JPA mapper
+ * Mapper for converting between Product domain objects and JPA entities
  */
-
 @Mapper(
     componentModel = "cdi",
     builder = @Builder(disableBuilder = false),
@@ -20,9 +19,27 @@ import org.ormi.priv.tfa.orderflow.kernel.product.SkuIdMapper;
 )
 public abstract class ProductJpaMapper {
 
+    /**
+     * Converts a JPA entity to a domain object
+     * 
+     * @param entity ProductEntity l'entité JPA
+     * @return Product l'objet domaine
+     */
     public abstract Product toDomain(ProductEntity entity);
 
+    /**
+     * Updates a JPA entity from a domain object
+     * 
+     * @param product Product l'objet domaine
+     * @param entity ProductEntity l'entité JPA à mettre à jour
+     */
     public abstract void updateEntity(Product product, @MappingTarget ProductEntity entity);
 
+    /**
+     * Converts a domain object to a JPA entity
+     * 
+     * @param product Product l'objet domaine
+     * @return ProductEntity l'entité JPA
+     */
     public abstract ProductEntity toEntity(Product product);
 }

@@ -29,7 +29,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
 
 /**
- * REST API for product commands.
+ * REST resource for product registry command operations
  */
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
@@ -40,6 +40,14 @@ public class ProductRegistryCommandResource {
     private final RetireProductService retireProductService;
     private final UpdateProductService updateProductService;
 
+    /**
+     * Constructor for ProductRegistryCommandResource
+     * 
+     * @param mapper CommandDtoMapper le mapper pour les DTO de commande
+     * @param registerProductService RegisterProductService le service d'enregistrement de produit
+     * @param retireProductService RetireProductService le service de retrait de produit
+     * @param updateProductService UpdateProductService le service de mise à jour de produit
+     */
     @Inject
     public ProductRegistryCommandResource(
             CommandDtoMapper mapper,
@@ -53,11 +61,11 @@ public class ProductRegistryCommandResource {
     }
 
     /**
-     * Create a new product.
+     * Registers a new product
      * 
-     * @param cmd product data
-     * @param uriInfo uri info
-     * @return 201 created
+     * @param cmd RegisterProductCommandDto les données de la commande d'enregistrement
+     * @param uriInfo UriInfo les informations d'URI de la requête
+     * @return RestResponse<Void> la réponse REST avec le statut 201 Created
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -68,10 +76,10 @@ public class ProductRegistryCommandResource {
     }
 
     /**
-     * Retire a product.
+     * Retires an existing product
      * 
-     * @param productId product id
-     * @return 200
+     * @param productId String l'identifiant du produit à retirer
+     * @return RestResponse<Void> la réponse REST avec le statut 204 No Content
      */
     @DELETE
     @Path("/{id}")
@@ -81,11 +89,11 @@ public class ProductRegistryCommandResource {
     }
 
     /**
-     * Update product name.
+     * Updates a product's name
      * 
-     * @param productId product id
-     * @param params new name
-     * @return 200
+     * @param productId String l'identifiant du produit à mettre à jour
+     * @param params UpdateProductNameParamsDto les paramètres de mise à jour du nom
+     * @return RestResponse<Void> la réponse REST avec le statut 204 No Content
      */
     @PATCH
     @Path("/{id}/name")
@@ -97,11 +105,11 @@ public class ProductRegistryCommandResource {
     }
 
     /**
-     * Update product description.
+     * Updates a product's description
      * 
-     * @param productId product id
-     * @param params new description
-     * @return 200
+     * @param productId String l'identifiant du produit à mettre à jour
+     * @param params UpdateProductDescriptionParamsDto les paramètres de mise à jour de la description
+     * @return RestResponse<Void> la réponse REST avec le statut 204 No Content
      */
     @PATCH
     @Path("/{id}/description")

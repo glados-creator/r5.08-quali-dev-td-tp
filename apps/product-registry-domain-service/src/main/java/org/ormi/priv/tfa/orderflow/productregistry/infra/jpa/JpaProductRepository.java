@@ -17,7 +17,7 @@ import jakarta.transaction.Transactional;
 
 /**
  * JPA implementation of ProductRepository.
- * Handles database operations for Product domain objects.
+ * Handles persistence of Product domain objects using Hibernate Panache.
  */
 @ApplicationScoped
 public class JpaProductRepository implements PanacheRepositoryBase<ProductEntity, UUID>, ProductRepository {
@@ -33,6 +33,13 @@ public class JpaProductRepository implements PanacheRepositoryBase<ProductEntity
         this.skuIdMapper = skuIdMapper;
     }
 
+    /**
+     * Saves or updates a Product in database.
+     * If product exists: updates entity with new values.
+     * If product doesn't exist: creates new entity.
+     * 
+     * @param product Product the domain object to save
+     */
     @Override
     @Transactional
     public void save(Product product) {
@@ -45,12 +52,24 @@ public class JpaProductRepository implements PanacheRepositoryBase<ProductEntity
                 });
     }
 
+    /**
+     * Finds Product by its id.
+     * 
+     * @param id ProductId the product identifier
+     * @return Optional<Product> empty if not found
+     */
     @Override
     public Optional<Product> findById(ProductId id) {
         return findByIdOptional(productIdMapper.map(id))
                 .map(mapper::toDomain);
     }
 
+    /**
+     * Checks if a product exists with given SKU id.
+     * 
+     * @param skuId SkuId the SKU identifier to check
+     * @return boolean true if product exists with this SKU
+     */
     @Override
     public boolean existsBySkuId(SkuId skuId) {
         return count("skuId", skuIdMapper.map(skuId)) > 0;
