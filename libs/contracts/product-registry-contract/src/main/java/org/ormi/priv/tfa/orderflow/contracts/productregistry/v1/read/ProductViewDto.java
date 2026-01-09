@@ -8,9 +8,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * TODO: Complete Javadoc
+ * DTO for product view with details, catalogs and events.
  */
-
 public record ProductViewDto(
         String id,
         String skuId,
@@ -22,6 +21,10 @@ public record ProductViewDto(
         String createdAt,
         String updatedAt) {
 
+    /**
+     * @param id String product id
+     * @param name String catalog name
+     */
     public static record ProductViewDtoCatalog(
             String id,
             String name) {
@@ -35,23 +38,48 @@ public record ProductViewDto(
         @JsonSubTypes.Type(value = ProductViewEventDtoPayload.ProductRetiredPayloadDto.class, name = "ProductRetired")
     })
     public sealed interface ProductViewEventDtoPayload {
+        /**
+         * @param skuId String SKU id
+         * @param name String product name
+         * @param description String product description
+         */
         public record ProductRegisteredPayloadDto(
                 String skuId,
                 String name,
                 String description) implements ProductViewEventDtoPayload {
         }
+        
+        /**
+         * @param oldName String previous name
+         * @param newName String updated name
+         */
         public record ProductNameUpdatedPayloadDto(
                 String oldName,
                 String newName) implements ProductViewEventDtoPayload {
         }
+        
+        /**
+         * @param oldDescription String previous description
+         * @param newDescription String updated description
+         */
         public record ProductDescriptionUpdatedPayloadDto(
                 String oldDescription,
                 String newDescription) implements ProductViewEventDtoPayload {
         }
+        
+        /**
+         * Empty payload for retirement event.
+         */
         public record ProductRetiredPayloadDto() implements ProductViewEventDtoPayload {
         }
     }
 
+    /**
+     * @param type ProductViewDtoEventType event type
+     * @param timestamp String event timestamp
+     * @param sequence Long event sequence
+     * @param payload ProductViewEventDtoPayload event payload
+     */
     public static record ProductViewDtoEvent(
             ProductViewDtoEventType type,
             String timestamp,
@@ -59,6 +87,9 @@ public record ProductViewDto(
             ProductViewEventDtoPayload payload) {
     }
 
+    /**
+     * Event types for product history.
+     */
     public static enum ProductViewDtoEventType {
         REGISTERED("ProductRegistered"),
         NAME_UPDATED("ProductNameUpdated"),
@@ -67,6 +98,9 @@ public record ProductViewDto(
 
         private final String value;
 
+        /**
+         * @param value String enum value
+         */
         ProductViewDtoEventType(String value) {
             this.value = value;
         }

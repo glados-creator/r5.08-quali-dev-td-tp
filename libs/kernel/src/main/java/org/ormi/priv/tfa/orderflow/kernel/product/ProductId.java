@@ -5,10 +5,13 @@ import java.util.UUID;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * TODO: Complete Javadoc
+ * product id
  */
-
 public record ProductId(@NotNull UUID value) {
+    
+    /**
+     * @return ProductId un nouvel identifiant
+     */
     public static ProductId newId() {
         return new ProductId(UUID.randomUUID());
     }
