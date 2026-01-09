@@ -17,7 +17,7 @@ import jakarta.transaction.Transactional;
 
 /**
  * JPA implementation of ProductRepository.
- * Handles persistence of Product domain objects using Hibernate Panache.
+ * Handles database operations for Product domain objects.
  */
 @ApplicationScoped
 public class JpaProductRepository implements PanacheRepositoryBase<ProductEntity, UUID>, ProductRepository {

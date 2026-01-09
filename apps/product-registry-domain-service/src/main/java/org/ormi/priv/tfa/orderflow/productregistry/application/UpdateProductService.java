@@ -17,7 +17,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Service responsible for handling product update operations.
+ * Handles product updates.
  * Handles commands to update product name and description with validation.
  */
 @ApplicationScoped

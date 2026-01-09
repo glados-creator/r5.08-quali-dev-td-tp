@@ -29,7 +29,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
 
 /**
- * REST resource for product registry command operations
+ * REST API for product commands.
  */
 @Path("/products")
 @Produces(MediaType.APPLICATION_JSON)

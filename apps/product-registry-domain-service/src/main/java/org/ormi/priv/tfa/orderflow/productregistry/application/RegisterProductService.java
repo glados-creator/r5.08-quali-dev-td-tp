@@ -16,7 +16,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Service for handling product registration commands
+ * Handles product registration.
  */
 @ApplicationScoped
 public class RegisterProductService {

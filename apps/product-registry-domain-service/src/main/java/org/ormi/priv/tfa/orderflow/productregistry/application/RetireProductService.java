@@ -15,7 +15,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * Service responsible for handling product retirement operations.
+ * Handles product retirement.
  */
 @ApplicationScoped
 public class RetireProductService {

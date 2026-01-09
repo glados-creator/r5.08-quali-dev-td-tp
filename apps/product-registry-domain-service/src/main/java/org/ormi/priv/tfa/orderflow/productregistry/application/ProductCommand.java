@@ -4,7 +4,7 @@ import org.ormi.priv.tfa.orderflow.kernel.product.ProductId;
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuId;
 
 /**
- * Sealed interface representing product commands
+ * Commands for managing products.
  */
 public sealed interface ProductCommand {
     
