@@ -14,7 +14,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
 /**
- * TODO: Complete Javadoc
+ * API ProductRegistryDomainService
  */
 
 @ApplicationScoped

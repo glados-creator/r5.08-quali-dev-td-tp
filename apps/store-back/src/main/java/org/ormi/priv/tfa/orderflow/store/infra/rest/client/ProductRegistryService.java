@@ -12,7 +12,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
 
 /**
- * TODO: Complete Javadoc
+ * API ProductRegistryService
  */
 
 @ApplicationScoped

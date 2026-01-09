@@ -3,7 +3,7 @@ package org.ormi.priv.tfa.orderflow.contracts.productregistry.v1.read;
 import java.time.Instant;
 
 /**
- * TODO: Complete Javadoc
+ * DTO pour ProductS tream Element
  */
 
 public record ProductStreamElementDto(

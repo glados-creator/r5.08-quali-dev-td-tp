@@ -28,7 +28,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response.Status;
 
 /**
- * TODO: Complete Javadoc
+ * API ProductRpcResource
  */
 
 @Path("/products")
