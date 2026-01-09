@@ -15,9 +15,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * JPA implementation of OutboxRepository.
  */
-
 @ApplicationScoped
 @DefaultBean
 public class JpaOutboxRepository implements PanacheRepository<OutboxEntity>, OutboxRepository {

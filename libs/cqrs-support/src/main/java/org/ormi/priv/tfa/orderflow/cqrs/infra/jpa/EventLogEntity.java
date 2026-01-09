@@ -21,9 +21,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * TODO: Complete Javadoc
+ * JPA entity for event log table.
  */
-
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -39,25 +38,31 @@ public class EventLogEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "bigserial")
     private Long id;
+    
     @Column(name = "aggregate_type", nullable = false, updatable = false, columnDefinition = "text")
     private String aggregateType;
+    
     @Column(name = "aggregate_id", nullable = false, updatable = false, columnDefinition = "uuid")
     private UUID aggregateId;
+    
     @Column(name = "aggregate_version", nullable = false, updatable = false, columnDefinition = "bigint")
     private Long aggregateVersion;
+    
     @Column(name = "event_type", nullable = false, updatable = false, columnDefinition = "text")
     private String eventType;
+    
     @Column(name = "event_version", nullable = false, updatable = false, columnDefinition = "int")
     private int eventVersion;
+    
     @Column(name = "occurred_at", nullable = false, updatable = false, columnDefinition = "timestamptz")
     private Instant occurredAt;
+    
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "payload", nullable = false, updatable = false, columnDefinition = "jsonb")
     private JsonNode payload;
 
     /**
      * TODO: implements metadata for observability
-     * 
      * - correlation : global tracing of requests
      * - causation : linking related events
      * - tenant : multi-tenancy support (for security, quotas or data tagging purposes)

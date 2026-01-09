@@ -12,9 +12,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * JPA implementation of EventLogRepository.
  */
-
 @ApplicationScoped
 @DefaultBean
 public class JpaEventLogRepository implements PanacheRepository<EventLogEntity>, EventLogRepository {
@@ -28,6 +27,12 @@ public class JpaEventLogRepository implements PanacheRepository<EventLogEntity>,
         this.objectMapper = objectMapper;
     }
 
+    /**
+     * Appends event to log.
+     * 
+     * @param eventLog EventEnvelope event to append
+     * @return EventLogEntity persisted entity
+     */
 	@Override
     @Transactional
 	public EventLogEntity append(EventEnvelope<?> eventLog) {

@@ -7,7 +7,7 @@ import org.ormi.priv.tfa.orderflow.kernel.product.ProductId;
 import org.ormi.priv.tfa.orderflow.kernel.product.SkuId;
 
 /**
- * TODO: Complete Javadoc
+ * product repository DB interface
  */
 
 public interface ProductRepository {
