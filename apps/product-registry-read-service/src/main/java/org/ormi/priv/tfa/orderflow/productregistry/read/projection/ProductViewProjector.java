@@ -22,7 +22,7 @@ import org.ormi.priv.tfa.orderflow.kernel.product.views.ProductView.ProductViewE
 import jakarta.enterprise.context.ApplicationScoped;
 
 /**
- * TODO: Complete Javadoc
+ * product view projector idk
  */
 @ApplicationScoped
 public class ProductViewProjector implements Projector<ProductView, ProductEventV1Envelope<?>> {

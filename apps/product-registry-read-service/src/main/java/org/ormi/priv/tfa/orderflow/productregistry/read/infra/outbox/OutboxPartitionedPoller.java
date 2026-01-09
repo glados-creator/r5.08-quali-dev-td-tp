@@ -33,9 +33,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 /**
- * TODO: Complete Javadoc
+ * Polls outbox messages and processes them with partitioning.
  */
-
 @ApplicationScoped
 @Startup
 public class OutboxPartitionedPoller {
@@ -69,18 +68,26 @@ public class OutboxPartitionedPoller {
         this.mapper = mapper;
     }
 
+    /**
+     * @param event StartupEvent quarkus startup
+     */
     void onStart(@Observes StartupEvent event) {
         pollScheduler.scheduleWithFixedDelay(this::poll, 0, POLL_INTERVAL_MS, TimeUnit.MILLISECONDS);
-        // TODO: Hey, log some info
         LOG.info("OutboxPartitionedPoller started with " + PARTITIONS + " partitions.");
     }
 
+    /**
+     * @param event ShutdownEvent quarkus shutdown
+     */
     void onStop(@Observes ShutdownEvent event) {
         pollScheduler.shutdownNow();
         Arrays.stream(executors).forEach(ExecutorService::shutdownNow);
-        // TODO: Hey, log some info
+        LOG.info("OutboxPartitionedPoller stopped.");
     }
 
+    /**
+     * Polls outbox for ready messages and dispatches to partitions.
+     */
     @ActivateRequestContext
     @Transactional
     protected void poll() {
@@ -94,10 +101,8 @@ public class OutboxPartitionedPoller {
                 UUID aggregateId = msg.getSourceEvent().getAggregateId();
                 Instant blockedTime = blockedUntil.get(aggregateId);
                 if (blockedTime != null && blockedTime.isAfter(Instant.now())) {
-                    // Still blocked, skip processing
                     return;
                 }
-                // Get corresponding partition
                 int partition = Math.floorMod(aggregateId.hashCode(), PARTITIONS);
                 executors[partition].submit(() -> process(msg));
             });
@@ -106,6 +111,11 @@ public class OutboxPartitionedPoller {
         }
     }
 
+    /**
+     * Processes single outbox message.
+     * 
+     * @param outboxMsg OutboxEntity the message to process
+     */
     private void process(OutboxEntity outboxMsg) {
         var ev = outboxMsg.getSourceEvent();
         try {

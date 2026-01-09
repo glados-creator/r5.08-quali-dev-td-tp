@@ -28,9 +28,8 @@ import org.ormi.priv.tfa.orderflow.kernel.product.views.ProductView.ProductViewC
 import org.ormi.priv.tfa.orderflow.kernel.product.views.ProductView.ProductViewEvent;
 
 /**
- * TODO: Complete Javadoc
+ * product view dto mapper
  */
-
 @Mapper(componentModel = "cdi", builder = @Builder(disableBuilder = false), uses = {
         ProductIdMapper.class,
         SkuIdMapper.class,
@@ -38,25 +37,41 @@ import org.ormi.priv.tfa.orderflow.kernel.product.views.ProductView.ProductViewE
         ProductViewDtoMapper.ProductViewDtoCatalogMapper.class
 }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductViewDtoMapper {
+    
+    /**
+     * @param productView ProductView la vue du produit
+     * @return ProductViewDto le DTO de la vue du produit
+     */
     public ProductViewDto toDto(ProductView productView);
 
+    /**
+     * event mapper
+     */
     @Mapper(componentModel = "cdi", builder = @Builder(disableBuilder = false), unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {
             ProductEventTypeMapper.class, ProductViewDtoEventMapper.ProductViewDtoPayloadMapper.class
     })
     public interface ProductViewDtoEventMapper {
+        
         ProductViewDtoEvent toDto(ProductViewEvent event);
 
+        /**
+         * payload mapper
+         */
         @Mapper(componentModel = "cdi", unmappedTargetPolicy = ReportingPolicy.IGNORE)
         public interface ProductViewDtoPayloadMapper {
+            
             ProductRegisteredPayloadDto toDto(ProductRegisteredPayload payload);
-
+            
             ProductNameUpdatedPayloadDto toDto(ProductNameUpdatedPayload payload);
-
+            
             ProductDescriptionUpdatedPayloadDto toDto(ProductDescriptionUpdatedPayload payload);
-
+            
             ProductRetiredPayloadDto toDto(Empty payload);
-
-            // 👇 Dispatcher for MapStruct (handles interface→interface)
+            
+            /**
+             * @param payload DomainEventPayload
+             * @return ProductViewEventDtoPayload le DTO d'événement de Productview
+             */
             default ProductViewEventDtoPayload map(DomainEventPayload payload) {
                 if (payload == null)
                     return null;
@@ -73,11 +88,22 @@ public interface ProductViewDtoMapper {
         }
     }
 
+    /**
+     * catalog mapper
+     */
     @Mapper(componentModel = "cdi", builder = @Builder(disableBuilder = false), unmappedTargetPolicy = ReportingPolicy.IGNORE)
     public interface ProductViewDtoCatalogMapper {
+        
+        /**
+         * @param catalog ProductViewCatalogRef la référence du catalogue
+         * @return ProductViewDtoCatalog le DTO de la référence du catalogue
+         */
         ProductViewDtoCatalog toDto(ProductViewCatalogRef catalog);
     }
 
+    /**
+     * event type mapper
+     */
     @Mapper(componentModel = "cdi", builder = @Builder(disableBuilder = false), unmappedTargetPolicy = ReportingPolicy.IGNORE)
     public interface ProductEventTypeMapper {
         @ValueMappings({
