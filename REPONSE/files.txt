@@ -1,0 +1,428 @@
+[root@f8b88581c59a qualdev-tdtp-ct]# tree -I 'node_modules|pnpm-store|.pnpm-store|.yarn|.pnp.*|yarn.lock|package-lock.json|.git|dist|build|coverage|__pycache__|.DS_Store|*.log|.next|.nuxt|.cache|.output' -a --dirsfirst
+.
+├── .devcontainer
+│   ├── postgresql
+│   │   └── init.sh
+│   ├── .env
+│   ├── Dockerfile
+│   ├── Dockerfile.debian
+│   ├── devcontainer.json
+│   └── docker-compose.yml
+├── .github
+│   └── workflows
+│       ├── docker_build.yaml
+│       └── mega-linter.yml
+├── .gradle
+│   ├── 8.14.3
+│   │   ├── checksums
+│   │   │   ├── checksums.lock
+│   │   │   ├── md5-checksums.bin
+│   │   │   └── sha1-checksums.bin
+│   │   ├── executionHistory
+│   │   │   ├── executionHistory.bin
+│   │   │   └── executionHistory.lock
+│   │   ├── expanded
+│   │   ├── fileChanges
+│   │   │   └── last-build.bin
+│   │   ├── fileHashes
+│   │   │   ├── fileHashes.bin
+│   │   │   ├── fileHashes.lock
+│   │   │   └── resourceHashesCache.bin
+│   │   ├── vcsMetadata
+│   │   └── gc.properties
+│   ├── buildOutputCleanup
+│   │   ├── buildOutputCleanup.lock
+│   │   ├── cache.properties
+│   │   └── outputFiles.bin
+│   └── vcs-1
+│       └── gc.properties
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── REPONSE
+│   ├── ex1.md
+│   ├── ex2.md
+│   ├── ex4.md
+│   ├── ex5.md
+│   ├── ex6.md
+│   ├── ex7.md
+│   ├── launch.sh
+│   ├── site.url
+│   ├── td2.md
+│   └── td3.md
+├── apps
+│   ├── product-registry-domain-service
+│   │   ├── src
+│   │   │   └── main
+│   │   │       ├── docker
+│   │   │       │   ├── Dockerfile.jvm
+│   │   │       │   ├── Dockerfile.legacy-jar
+│   │   │       │   ├── Dockerfile.native
+│   │   │       │   └── Dockerfile.native-micro
+│   │   │       ├── java
+│   │   │       │   └── org
+│   │   │       │       └── ormi
+│   │   │       │           └── priv
+│   │   │       │               └── tfa
+│   │   │       │                   └── orderflow
+│   │   │       │                       └── productregistry
+│   │   │       │                           ├── application
+│   │   │       │                           │   ├── ProductCommand.java
+│   │   │       │                           │   ├── RegisterProductService.java
+│   │   │       │                           │   ├── RetireProductService.java
+│   │   │       │                           │   └── UpdateProductService.java
+│   │   │       │                           ├── infra
+│   │   │       │                           │   ├── api
+│   │   │       │                           │   │   └── ProductRegistryCommandResource.java
+│   │   │       │                           │   ├── jpa
+│   │   │       │                           │   │   ├── JpaProductRepository.java
+│   │   │       │                           │   │   ├── ProductEntity.java
+│   │   │       │                           │   │   └── ProductJpaMapper.java
+│   │   │       │                           │   └── web
+│   │   │       │                           │       └── dto
+│   │   │       │                           │           └── CommandDtoMapper.java
+│   │   │       │                           └── Main.java
+│   │   │       └── resources
+│   │   │           └── application.yaml
+│   │   ├── .dockerignore
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   └── build.gradle
+│   ├── product-registry-read-service
+│   │   ├── src
+│   │   │   └── main
+│   │   │       ├── docker
+│   │   │       │   ├── Dockerfile.jvm
+│   │   │       │   ├── Dockerfile.legacy-jar
+│   │   │       │   ├── Dockerfile.native
+│   │   │       │   └── Dockerfile.native-micro
+│   │   │       ├── java
+│   │   │       │   └── org
+│   │   │       │       └── ormi
+│   │   │       │           └── priv
+│   │   │       │               └── tfa
+│   │   │       │                   └── orderflow
+│   │   │       │                       └── productregistry
+│   │   │       │                           └── read
+│   │   │       │                               ├── application
+│   │   │       │                               │   ├── ProductEventBroadcaster.java
+│   │   │       │                               │   ├── ProductQuery.java
+│   │   │       │                               │   ├── ProjectionDispatcher.java
+│   │   │       │                               │   └── ReadProductService.java
+│   │   │       │                               ├── infra
+│   │   │       │                               │   ├── api
+│   │   │       │                               │   │   ├── ProductRegistryQueryResource.java
+│   │   │       │                               │   │   └── ProductStreamResource.java
+│   │   │       │                               │   ├── jpa
+│   │   │       │                               │   │   ├── JpaProductViewRepository.java
+│   │   │       │                               │   │   ├── ProductViewEntity.java
+│   │   │       │                               │   │   └── ProductViewJpaMapper.java
+│   │   │       │                               │   ├── outbox
+│   │   │       │                               │   │   └── OutboxPartitionedPoller.java
+│   │   │       │                               │   └── web
+│   │   │       │                               │       └── dto
+│   │   │       │                               │           ├── ProductSummaryDtoMapper.java
+│   │   │       │                               │           └── ProductViewDtoMapper.java
+│   │   │       │                               ├── projection
+│   │   │       │                               │   └── ProductViewProjector.java
+│   │   │       │                               └── Main.java
+│   │   │       └── resources
+│   │   │           └── application.yaml
+│   │   ├── .dockerignore
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   └── build.gradle
+│   ├── store-back
+│   │   ├── src
+│   │   │   └── main
+│   │   │       ├── docker
+│   │   │       │   ├── Dockerfile.jvm
+│   │   │       │   ├── Dockerfile.legacy-jar
+│   │   │       │   ├── Dockerfile.native
+│   │   │       │   └── Dockerfile.native-micro
+│   │   │       ├── java
+│   │   │       │   └── org
+│   │   │       │       └── ormi
+│   │   │       │           └── priv
+│   │   │       │               └── tfa
+│   │   │       │                   └── orderflow
+│   │   │       │                       └── store
+│   │   │       │                           ├── infra
+│   │   │       │                           │   ├── api
+│   │   │       │                           │   │   ├── dto
+│   │   │       │                           │   │   │   ├── RetireProductDto.java
+│   │   │       │                           │   │   │   ├── SearchProductsDto.java
+│   │   │       │                           │   │   │   ├── UpdateProductDto.java
+│   │   │       │                           │   │   │   └── ViewProductDto.java
+│   │   │       │                           │   │   └── ProductRpcResource.java
+│   │   │       │                           │   └── rest
+│   │   │       │                           │       └── client
+│   │   │       │                           │           ├── ProductRegistryDomainService.java
+│   │   │       │                           │           └── ProductRegistryService.java
+│   │   │       │                           └── Main.java
+│   │   │       └── resources
+│   │   │           └── application.yaml
+│   │   ├── .dockerignore
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   └── build.gradle
+│   ├── store-front
+│   │   ├── .angular
+│   │   │   └── cache
+│   │   │       └── 20.3.2
+│   │   │           └── @orderflow
+│   │   │               └── apps-store-front
+│   │   │                   ├── vite
+│   │   │                   │   ├── deps
+│   │   │                   │   │   ├── @angular_common.js
+│   │   │                   │   │   ├── @angular_common.js.map
+│   │   │                   │   │   ├── @angular_common_http.js
+│   │   │                   │   │   ├── @angular_common_http.js.map
+│   │   │                   │   │   ├── @angular_core.js
+│   │   │                   │   │   ├── @angular_core.js.map
+│   │   │                   │   │   ├── @angular_forms.js
+│   │   │                   │   │   ├── @angular_forms.js.map
+│   │   │                   │   │   ├── @angular_platform-browser.js
+│   │   │                   │   │   ├── @angular_platform-browser.js.map
+│   │   │                   │   │   ├── @angular_router.js
+│   │   │                   │   │   ├── @angular_router.js.map
+│   │   │                   │   │   ├── _metadata.json
+│   │   │                   │   │   ├── chunk-7HRGJKM5.js
+│   │   │                   │   │   ├── chunk-7HRGJKM5.js.map
+│   │   │                   │   │   ├── chunk-E2LDIHHM.js
+│   │   │                   │   │   ├── chunk-E2LDIHHM.js.map
+│   │   │                   │   │   ├── chunk-FP4MAZG5.js
+│   │   │                   │   │   ├── chunk-FP4MAZG5.js.map
+│   │   │                   │   │   ├── chunk-JP2IL2VZ.js
+│   │   │                   │   │   ├── chunk-JP2IL2VZ.js.map
+│   │   │                   │   │   ├── chunk-RZ32J2DO.js
+│   │   │                   │   │   ├── chunk-RZ32J2DO.js.map
+│   │   │                   │   │   ├── chunk-VIH2RJRL.js
+│   │   │                   │   │   ├── chunk-VIH2RJRL.js.map
+│   │   │                   │   │   ├── chunk-WOOJKHZR.js
+│   │   │                   │   │   ├── chunk-WOOJKHZR.js.map
+│   │   │                   │   │   ├── package.json
+│   │   │                   │   │   ├── rxjs.js
+│   │   │                   │   │   ├── rxjs.js.map
+│   │   │                   │   │   ├── rxjs_internal_BehaviorSubject.js
+│   │   │                   │   │   └── rxjs_internal_BehaviorSubject.js.map
+│   │   │                   │   └── deps_ssr
+│   │   │                   │       ├── _metadata.json
+│   │   │                   │       └── package.json
+│   │   │                   └── .tsbuildinfo
+│   │   ├── public
+│   │   │   ├── assets
+│   │   │   │   └── logo.png
+│   │   │   └── favicon.ico
+│   │   ├── src
+│   │   │   ├── app
+│   │   │   │   ├── about
+│   │   │   │   │   └── about.component.ts
+│   │   │   │   ├── common
+│   │   │   │   │   ├── model
+│   │   │   │   │   │   ├── Alert.ts
+│   │   │   │   │   │   └── AlertType.ts
+│   │   │   │   │   ├── alert.service.ts
+│   │   │   │   │   └── toaster.component.ts
+│   │   │   │   ├── registry
+│   │   │   │   │   ├── model
+│   │   │   │   │   │   ├── PaginatedProductList.ts
+│   │   │   │   │   │   ├── ProductEvent.ts
+│   │   │   │   │   │   ├── ProductStreamElement.ts
+│   │   │   │   │   │   ├── ProductSummary.ts
+│   │   │   │   │   │   ├── ProductView.ts
+│   │   │   │   │   │   ├── RegisterProduct.ts
+│   │   │   │   │   │   └── UpdateProductRequest.ts
+│   │   │   │   │   ├── product
+│   │   │   │   │   │   └── product.component.ts
+│   │   │   │   │   ├── products
+│   │   │   │   │   │   └── products.component.ts
+│   │   │   │   │   ├── register-product
+│   │   │   │   │   │   └── register-product.component.ts
+│   │   │   │   │   ├── products.service.ts
+│   │   │   │   │   ├── registry.module.ts
+│   │   │   │   │   └── registry.routes.ts
+│   │   │   │   ├── app.config.ts
+│   │   │   │   ├── app.html
+│   │   │   │   ├── app.routes.ts
+│   │   │   │   ├── app.scss
+│   │   │   │   ├── app.spec.ts
+│   │   │   │   └── app.ts
+│   │   │   ├── index.html
+│   │   │   ├── main.ts
+│   │   │   ├── proxy.conf.json
+│   │   │   └── styles.scss
+│   │   ├── .editorconfig
+│   │   ├── .gitignore
+│   │   ├── .postcssrc.json
+│   │   ├── README.md
+│   │   ├── angular.json
+│   │   ├── package.json
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+│   └── store-front-e2e
+│       ├── cypress
+│       │   └── support
+│       │       └── e2e.js
+│       ├── cypress.config.js
+│       └── package.json
+├── ci
+│   └── docker
+│       └── Dockerfile
+├── doc
+│   ├── business
+│   │   ├── domain.cml
+│   │   └── index.md
+│   ├── material
+│   │   ├── .vitepress
+│   │   │   └── config.mts
+│   │   ├── assets
+│   │   │   └── images
+│   │   │       └── context-mapping_ContextMap.svg
+│   │   ├── fr
+│   │   │   ├── td
+│   │   │   │   ├── index.md
+│   │   │   │   ├── td1.md
+│   │   │   │   ├── td2.md
+│   │   │   │   └── td3.md
+│   │   │   ├── tp
+│   │   │   │   ├── exercice-1.md
+│   │   │   │   ├── exercice-2.md
+│   │   │   │   ├── exercice-3.md
+│   │   │   │   ├── exercice-4.md
+│   │   │   │   ├── exercice-5.md
+│   │   │   │   ├── exercice-6.md
+│   │   │   │   ├── exercice-7.md
+│   │   │   │   ├── index.md
+│   │   │   │   ├── introduction.md
+│   │   │   │   └── presentation-projet.md
+│   │   │   ├── evaluation.md
+│   │   │   └── index.md
+│   │   ├── .gitignore
+│   │   └── package.json
+│   ├── .gitkeep
+│   └── index.md
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── libs
+│   ├── bom-platform
+│   │   └── build.gradle
+│   ├── contracts
+│   │   └── product-registry-contract
+│   │       ├── src
+│   │       │   └── main
+│   │       │       └── java
+│   │       │           └── org
+│   │       │               └── ormi
+│   │       │                   └── priv
+│   │       │                       └── tfa
+│   │       │                           └── orderflow
+│   │       │                               └── contracts
+│   │       │                                   └── productregistry
+│   │       │                                       └── v1
+│   │       │                                           ├── read
+│   │       │                                           │   ├── GetProductQueryDto.java
+│   │       │                                           │   ├── PaginatedProductListDto.java
+│   │       │                                           │   ├── ProductStreamElementDto.java
+│   │       │                                           │   ├── ProductSummaryDto.java
+│   │       │                                           │   ├── ProductViewDto.java
+│   │       │                                           │   └── SearchProductsQueryDto.java
+│   │       │                                           └── write
+│   │       │                                               ├── CommandResultDto.java
+│   │       │                                               ├── RegisterProductCommandDto.java
+│   │       │                                               ├── UpdateProductDescriptionParamsDto.java
+│   │       │                                               └── UpdateProductNameParamsDto.java
+│   │       └── build.gradle
+│   ├── cqrs-support
+│   │   ├── src
+│   │   │   └── main
+│   │   │       ├── java
+│   │   │       │   └── org
+│   │   │       │       └── ormi
+│   │   │       │           └── priv
+│   │   │       │               └── tfa
+│   │   │       │                   └── orderflow
+│   │   │       │                       └── cqrs
+│   │   │       │                           ├── infra
+│   │   │       │                           │   ├── jpa
+│   │   │       │                           │   │   ├── EventLogEntity.java
+│   │   │       │                           │   │   ├── EventLogJpaMapper.java
+│   │   │       │                           │   │   ├── JpaEventLogRepository.java
+│   │   │       │                           │   │   ├── JpaOutboxRepository.java
+│   │   │       │                           │   │   └── OutboxEntity.java
+│   │   │       │                           │   └── persistence
+│   │   │       │                           │       ├── EventLogRepository.java
+│   │   │       │                           │       └── OutboxRepository.java
+│   │   │       │                           ├── DomainEvent.java
+│   │   │       │                           ├── EventEnvelope.java
+│   │   │       │                           └── Projector.java
+│   │   │       └── resources
+│   │   │           └── db
+│   │   │               └── queries
+│   │   │                   └── findReadyByAggregateTypeOrderByAggregateVersion.sql
+│   │   └── build.gradle
+│   ├── kernel
+│   │   ├── src
+│   │   │   └── main
+│   │   │       ├── java
+│   │   │       │   └── org
+│   │   │       │       └── ormi
+│   │   │       │           └── priv
+│   │   │       │               └── tfa
+│   │   │       │                   └── orderflow
+│   │   │       │                       └── kernel
+│   │   │       │                           ├── common
+│   │   │       │                           │   └── AggregateType.java
+│   │   │       │                           ├── product
+│   │   │       │                           │   ├── jpa
+│   │   │       │                           │   │   └── ProductEventJpaMapper.java
+│   │   │       │                           │   ├── persistence
+│   │   │       │                           │   │   ├── ProductEventVersion.java
+│   │   │       │                           │   │   ├── ProductRepository.java
+│   │   │       │                           │   │   └── ProductViewRepository.java
+│   │   │       │                           │   ├── views
+│   │   │       │                           │   │   ├── ProductEventType.java
+│   │   │       │                           │   │   ├── ProductSummary.java
+│   │   │       │                           │   │   └── ProductView.java
+│   │   │       │                           │   ├── ProductEventV1.java
+│   │   │       │                           │   ├── ProductEventV1Envelope.java
+│   │   │       │                           │   ├── ProductId.java
+│   │   │       │                           │   ├── ProductIdMapper.java
+│   │   │       │                           │   ├── ProductLifecycle.java
+│   │   │       │                           │   ├── SkuId.java
+│   │   │       │                           │   └── SkuIdMapper.java
+│   │   │       │                           └── Product.java
+│   │   │       └── resources
+│   │   │           └── META-INF
+│   │   │               └── beans.xml
+│   │   └── build.gradle
+│   └── sql
+│       ├── changelog
+│       │   ├── platform
+│       │   │   └── main-changelog.xml
+│       │   ├── product-registry
+│       │   │   ├── domain-changelog.xml
+│       │   │   └── read-changelog.xml
+│       │   └── master.xml
+│       └── README.md
+├── .cspell.json
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── .gitlab-ci.yml
+├── .mega-linter.yml
+├── .npmrc
+├── COPYRIGHT
+├── LICENSE
+├── README.md
+├── build.gradle
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+└── settings.gradle

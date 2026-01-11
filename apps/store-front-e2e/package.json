@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress:run": "cypress run --headless --browser chrome",
+    "cypress:run": "cypress run",
     "cypress:rungui": "xvfb-run cypress run --headless --browser chromium"
   },
   "keywords": [],
